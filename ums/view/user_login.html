@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Title</title>
+		<link rel="stylesheet" type="text/css" href="../static/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="../static/adminlte/css/AdminLTE.min.css">
+		<script type="application/javascript" src="../static/jquery/jquery-3.5.1.min.js"></script>
+		<script type="application/javascript" src="../static/bootstrap/js/bootstrap.min.js"></script>
+		<script type="application/javascript">
+			// 用户登录
+			function loginUser() {
+				// 获取用户表单中所填写的信息
+				var formData = $("#loginForm").serialize();
+				// 使用 ajax 进行异步登录
+				$.ajax({
+					// 设定请求路径
+					url: "http://localhost:6666/user/login",
+					// 请求方式
+					type: "post",
+					// 请求参数
+					data: formData,
+					// 返回数据类型
+					dataType: "json",
+					// 处理成功的回调函数
+					success: function (data) {
+						// 提示登录结果信息
+						$("#result").html(data.data);
+						// 根据是否成功，判断跳转路径
+						if (data.result) {
+							// 登录成功，跳转到首页面
+							location.href = "/ironman/index";
+						}
+					}
+				});
+			}
+		</script>
+	</head>
+	<body class="hold-transition login-page">
+		<div class="login-box">
+			<div class="login-logo">
+				<a href="#"><b>XXXXXX</b>招租：18729804309</a>
+			</div>
+			<div class="login-box-body">
+				<p class="login-box-msg">Sign in to start your session</p>
+				<form id="loginForm">
+					<div class="form-group has-feedback">
+						<input type="text" id="cellphone" name="cellphone" class="form-control" placeholder="请输入您的手机号码">
+						<span class="glyphicon glyphicon-phone form-control-feedback"></span>
+					</div>
+					<div class="form-group has-feedback">
+						<input type="password" id="password" name="password" class="form-control" placeholder="请输入您的登录密码">
+						<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+					</div>
+					<div class="row">
+						<div class="col-xs-8">
+							<div class="checkbox icheck">
+								<label></label>
+							</div>
+						</div>
+						<div class="col-xs-4">
+							<a href="javascript:loginUser();" class="btn btn-primary btn-block btn-flat">登录</a>
+						</div>
+					</div>
+				</form>
+
+				<div class="social-auth-links text-center">
+					<p id="result" style="color: red;"></p>
+				</div>
+				<a href="#">忘记密码...</a><br>
+			</div>
+		</div>
+	</body>
+</html>

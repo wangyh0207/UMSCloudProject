@@ -1,0 +1,10 @@
+### 启动端口号
+server:
+  port: 8888
+spring:
+  ### 项目应用名
+  application:
+    name: ums-provider
+  ### 需要家在的配置文件
+  profiles:
+    active: data, eureka-client

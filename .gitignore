@@ -1,0 +1,6 @@
+# Project exclude paths
+/ums-commons/target/
+/ums-consumer/target/
+/ums-data-commons/target/
+/ums-provider/target/
+/ums-register/target/

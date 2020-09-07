@@ -1,0 +1,19 @@
+### 设定注册中心项目启动端口号
+server:
+  port: 9999
+### 注册中心项目应用名
+spring:
+  application:
+    name: ums-register
+eureka:
+  ### 设置注册中心主机名
+  instance:
+    hostname: localhost
+  client:
+    ### 配置注册中心的相关应用不需要注册到注册中心中
+    register-with-eureka: false
+    ### 配置注册中心不需要去发现其他注册中心中的应用
+    fetch-registry: false
+    ### 配置注册中心访问地址
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
