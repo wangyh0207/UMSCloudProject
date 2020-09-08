@@ -13,6 +13,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -73,5 +74,36 @@ public class UserServiceImpl implements UserService {
 		// 进行数据切换
 		page = PageUtil.parsePageFromPageInfo(page, pageInfo);
 		return page;
+	}
+
+	/**
+	 * <b>保存用户信息</b>
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public boolean save(User user) throws Exception {
+		Integer count = userDao.save(user);
+		if (count > 0) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * <b>根据 id 查找对象</b>
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public User getById(Long id) throws Exception {
+		User query = new User();
+		query.setId(id);
+		List<User> userList = userDao.findListByQuery(query);
+		if (userList != null && userList.size() > 0) {
+			return userList.get(0);
+		}
+		return null;
 	}
 }

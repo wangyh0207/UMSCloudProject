@@ -3,11 +3,11 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Title</title>
-		<link rel="stylesheet" type="text/css" href="../static/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="../font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="../static/adminlte/css/AdminLTE.min.css">
-		<script type="application/javascript" src="../static/jquery/jquery-3.5.1.min.js"></script>
-		<script type="application/javascript" src="../static/bootstrap/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="static/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="static/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="static/adminlte/css/AdminLTE.min.css">
+		<script type="application/javascript" src="static/jquery/jquery-3.5.1.min.js"></script>
+		<script type="application/javascript" src="static/bootstrap/js/bootstrap.min.js"></script>
 		<script type="application/javascript">
 			// 用户登录
 			function loginUser() {
@@ -16,7 +16,7 @@
 				// 使用 ajax 进行异步登录
 				$.ajax({
 					// 设定请求路径
-					url: "http://localhost:6666/user/login",
+					url: "/user/login",
 					// 请求方式
 					type: "post",
 					// 请求参数
@@ -30,7 +30,7 @@
 						// 根据是否成功，判断跳转路径
 						if (data.result) {
 							// 登录成功，跳转到首页面
-							location.href = "/ironman/index";
+							location.href = "/ums/view/index.html";
 						}
 					}
 				});

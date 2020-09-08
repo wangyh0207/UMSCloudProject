@@ -5,11 +5,10 @@ import cn.ekgc.ums.base.pojo.vo.Page;
 import cn.ekgc.ums.base.pojo.vo.ResponseVO;
 import cn.ekgc.ums.pojo.entity.User;
 import cn.ekgc.ums.transport.UserTransport;
+import cn.ekgc.ums.util.MD5Util;
 import cn.ekgc.ums.util.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <b>用户信息控制器</b>
@@ -60,5 +59,32 @@ public class UserController extends BaseController {
 		page = userTransport.getUserForPage(page);
 		// 使用 Page 创建返回视图对象
 		return ResponseVO.successResponse(page);
+	}
+
+	/**
+	 * <b>保存用户信息</b>
+	 * @return
+	 * @throws Exception
+	 */
+	@PostMapping("/save")
+	public ResponseVO save(User user) throws Exception {
+		user.setPassword(MD5Util.encrypt(user.getPassword()));
+		boolean flag = userTransport.save(user);
+		if (flag) {
+			return ResponseVO.successResponse("保存成功！");
+		}
+		return ResponseVO.errorResponse("保存失败！");
+	}
+
+	/**
+	 * <b>根据 id 查找对象</b>
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	@GetMapping("/{id}")
+	public ResponseVO queryById(@PathVariable("id") Long id) throws Exception {
+		User user = userTransport.getById(id);
+		return ResponseVO.successResponse(user);
 	}
 }

@@ -2,6 +2,7 @@ package cn.ekgc.ums.service;
 
 import cn.ekgc.ums.base.pojo.vo.Page;
 import cn.ekgc.ums.pojo.entity.User;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * <b>用户信息数据业务层接口</b>
@@ -26,4 +27,19 @@ public interface UserService {
 	 * @throws Exception
 	 */
 	Page<User> getUserForPage(Page<User> page) throws Exception;
+
+	/**
+	 * <b>保存用户信息</b>
+	 * @return
+	 * @throws Exception
+	 */
+	boolean save(User user) throws Exception;
+
+	/**
+	 * <b>根据 id 查找对象</b>
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	User getById(Long id) throws Exception;
 }
